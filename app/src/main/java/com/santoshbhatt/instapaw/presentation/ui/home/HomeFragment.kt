@@ -1,4 +1,4 @@
-package com.santoshbhatt.instapaw.ui.home
+package com.santoshbhatt.instapaw.presentation.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater

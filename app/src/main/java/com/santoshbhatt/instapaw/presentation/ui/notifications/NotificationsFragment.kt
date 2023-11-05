@@ -1,4 +1,4 @@
-package com.santoshbhatt.instapaw.ui.notifications
+package com.santoshbhatt.instapaw.presentation.ui.notifications
 
 import android.os.Bundle
 import android.view.LayoutInflater
