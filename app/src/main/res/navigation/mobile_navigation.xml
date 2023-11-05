@@ -12,9 +12,9 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.santoshbhatt.instapaw.presentation.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
+        android:id="@+id/navigation_rescue"
+        android:name="com.santoshbhatt.instapaw.presentation.ui.rescue.RescueFragment"
+        android:label="@string/title_rescue"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
@@ -22,4 +22,14 @@
         android:name="com.santoshbhatt.instapaw.presentation.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.santoshbhatt.instapaw.presentation.ui.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/navigation_add_post"
+        android:name="com.santoshbhatt.instapaw.presentation.ui.addpost.AddPostFragment"
+        android:label="fragment_add_post"
+        tools:layout="@layout/fragment_add_post" />
 </navigation>

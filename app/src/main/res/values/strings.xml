@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Insta Paw</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_rescue">Rescue</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_add_post">Add Post</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
