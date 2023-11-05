@@ -14,7 +14,8 @@
         <!-- Customize your theme here. -->
         <item name="android:textColor">#212121</item>
         <item name="dividerColor">#BDBDBD</item>
-        <item name="colorSurface">?attr/colorPrimaryVariant</item>
+<!--        <item name="colorSurface">?attr/colorPrimaryVariant</item>-->
+        <item name="textInputStyle">@style/textInputStyle</item>
         <item name="bottomNavigationStyle">@style/customBottomNav</item>
         <item name="navigationViewStyle">@style/customNavigationViewStyle</item>
         <item name="actionBarTheme">@style/Theme.InstaPaw.ActionBar</item>
@@ -34,8 +35,10 @@
         <item name="iconTint">?attr/colorPrimary</item>
     </style>
 
-    <style name="textInputStyle" parent="Widget.Design.TextInputLayout">
-
+    <style name="textInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+<!--        <item name="android:textColorHint">@color/lightPrimaryColor</item>-->
+        <item name="colorAccent">?attr/colorPrimary</item>
+        <item name="colorSurface">@color/white</item>
     </style>
 
     <style name="Theme.InstaPaw.NoActionBar" parent="Theme.InstaPaw">
