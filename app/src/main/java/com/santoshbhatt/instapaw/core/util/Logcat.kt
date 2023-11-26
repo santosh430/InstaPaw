@@ -1,6 +1,7 @@
 package com.santoshbhatt.instapaw.core.util
 
 import android.util.Log
+import java.lang.Exception
 
 //Created by Santosh Bhatt on 5 Nov 2023
 object Logcat {
