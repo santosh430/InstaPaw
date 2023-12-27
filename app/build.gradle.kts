@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -68,13 +69,10 @@ dependencies {
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
 
-    // FirebaseUI for Firebase Auth
-    implementation ("com.firebaseui:firebase-ui-auth:8.0.2")
-
-    //facebook
-    implementation ("com.facebook.android:facebook-android-sdk:latest.release")
-
     // Also add the dependency for the Google Play services library and specify its version
     implementation ("com.google.android.gms:play-services-auth:20.7.0")
+
+    implementation("com.google.firebase:firebase-analytics")
+
 
 }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "575195816831",
+    "project_id": "instapaw-afd67",
+    "storage_bucket": "instapaw-afd67.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:575195816831:android:fd3308aa612677e82d704a",
+        "android_client_info": {
+          "package_name": "com.santoshbhatt.instapaw"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBTJkIgG_m0XSsLkewSZqnyAj-G-ZSMMA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

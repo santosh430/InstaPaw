@@ -66,6 +66,7 @@ tools:context=".presentation.ui.login_register.LoginRegisterActivity">
             app:iconSize="25dp"
             app:iconTint="@null"
             app:cornerRadius="5dp"
+            android:visibility="gone"
             android:gravity="center_horizontal"
             android:padding="10dp"
             app:icon="@drawable/fb"
@@ -149,7 +150,7 @@ tools:context=".presentation.ui.login_register.LoginRegisterActivity">
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_input_password"
-            app:layout_constraintVertical_bias="0.2" />
+            />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
@@ -238,7 +239,6 @@ tools:context=".presentation.ui.login_register.LoginRegisterActivity">
             android:layout_marginStart="32dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="32dp"
-            app:hintTextColor="@color/purple_500"
             android:hint="@string/enter_your_name">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -263,7 +263,6 @@ tools:context=".presentation.ui.login_register.LoginRegisterActivity">
             android:layout_marginStart="32dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="32dp"
-            app:hintTextColor="@color/purple_500"
             android:hint="@string/prompt_email">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -281,13 +280,13 @@ tools:context=".presentation.ui.login_register.LoginRegisterActivity">
             android:id="@+id/text_input_new_user_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_input_new_user_email"
             android:layout_marginStart="32dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="32dp"
-            app:hintTextColor="@color/purple_500"
             android:hint="@string/prompt_password">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -297,7 +296,7 @@ tools:context=".presentation.ui.login_register.LoginRegisterActivity">
                 android:layout_marginTop="8dp"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="actionDone"
-                android:inputType="text"
+                android:inputType="textPassword"
                 android:selectAllOnFocus="true"
                 />
 
@@ -305,10 +304,60 @@ tools:context=".presentation.ui.login_register.LoginRegisterActivity">
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_confirm_new_user_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_input_new_user_password"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="32dp"
+            android:hint="@string/prompt_confirm_password">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_confirm_new_user_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:imeActionLabel="@string/action_sign_in_short"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:selectAllOnFocus="true"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_mobile_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_input_confirm_new_user_password"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="32dp"
+            android:hint="@string/prompt_mobile_number">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_mobile_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:imeActionLabel="@string/action_sign_in_short"
+                android:imeOptions="actionDone"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:selectAllOnFocus="true"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_create_acc"
-            android:backgroundTint="@color/purple_200"
-            android:textColor="@color/black"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
@@ -316,11 +365,10 @@ tools:context=".presentation.ui.login_register.LoginRegisterActivity">
             android:enabled="false"
             app:cornerRadius="5dp"
             android:text="@string/create_account"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_input_new_user_password"
-            app:layout_constraintVertical_bias="0.2" />
+            app:layout_constraintTop_toBottomOf="@+id/text_input_mobile_number"
+             />
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
@@ -345,17 +393,19 @@ tools:context=".presentation.ui.login_register.LoginRegisterActivity">
             >
 
             <com.google.android.material.button.MaterialButton
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginHorizontal="32dp"
                 android:id="@+id/btn_register_google_signIn"
+                app:iconSize="25dp"
                 app:iconTint="@null"
+                app:cornerRadius="5dp"
                 android:padding="10dp"
                 app:icon="@drawable/google"
                 app:layout_constraintWidth_percent="0.45"
                 app:iconGravity="textStart"
                 android:gravity="center_horizontal"
                 android:text="@string/google"
-                app:cornerRadius="5dp"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/btn_register_facebook_signIn"
@@ -380,6 +430,7 @@ tools:context=".presentation.ui.login_register.LoginRegisterActivity">
                 app:layout_constraintWidth_percent="0.45"
                 android:gravity="center_horizontal"
                 android:padding="10dp"
+                android:visibility="gone"
                 app:icon="@drawable/fb"
                 app:iconGravity="textStart"
                 android:text="@string/facebook"
