@@ -3,7 +3,9 @@ package com.santoshbhatt.instapaw.presentation.ui.login_register
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -18,6 +20,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.CommonStatusCodes
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
@@ -25,8 +28,9 @@ import com.santoshbhatt.instapaw.R
 import com.santoshbhatt.instapaw.core.util.LogType
 import com.santoshbhatt.instapaw.core.util.Logcat
 import com.santoshbhatt.instapaw.databinding.ActivityLoginRegisterBinding
+import javax.inject.Inject
 
-class LoginRegisterActivity : AppCompatActivity() {
+class LoginRegisterActivity @Inject constructor() : AppCompatActivity() {
     private val TAG = "LoginRegisterActivity"
     private lateinit var binding: ActivityLoginRegisterBinding
     private val loginViewModel by viewModels<LoginRegisterViewModel> { LoginRegisterViewModel.LoginRegisterViewModelFactory }
@@ -109,6 +113,7 @@ class LoginRegisterActivity : AppCompatActivity() {
                 login.setOnClickListener {
                     logInUser(email.text.toString(),password.text.toString())
                 }
+
             }
 
             Logcat.printLog(TAG,LogType.Debug,"currentUser: ${firebaseAuth?.currentUser?.email}")
@@ -118,6 +123,23 @@ class LoginRegisterActivity : AppCompatActivity() {
         }catch (exception:Exception){
             Logcat.printLog(TAG,LogType.Error,"onCreate(): ",exception)
         }
+    }
+
+    /**
+     * @param afterTextChange takes the lambda which acts as a callback.
+     *
+     * Generic function to use functionality of afterTextChanged() of TextInputEditText.
+     */
+    fun TextInputEditText.addTextChangedListener(afterTextChange: ()->Unit ){
+        this.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun afterTextChanged(p0: Editable?) {
+                afterTextChange.invoke()
+            }
+        })
     }
 
     private fun registerNewUser(email: String, password: String) {

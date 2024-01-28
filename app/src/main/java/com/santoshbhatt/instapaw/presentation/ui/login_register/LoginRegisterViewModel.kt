@@ -7,9 +7,9 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.santoshbhatt.instapaw.InstaPaw
-import com.santoshbhatt.instapaw.domain.usecase.login_register.LoginRegisterUseCase
+import com.santoshbhatt.instapaw.domain.usecase.login.LoginUserUseCase
 
-class LoginRegisterViewModel(loginRegisterUseCase: LoginRegisterUseCase?, savedStateHandle: SavedStateHandle) :ViewModel() {
+class LoginRegisterViewModel(loginUserUseCase: LoginUserUseCase?, savedStateHandle: SavedStateHandle) :ViewModel() {
 
     companion object {
 
@@ -24,7 +24,7 @@ class LoginRegisterViewModel(loginRegisterUseCase: LoginRegisterUseCase?, savedS
                 // Create a SavedStateHandle for this ViewModel from extras
                 val savedStateHandle = extras.createSavedStateHandle()
                 return LoginRegisterViewModel(
-                    (application as InstaPaw).loginRegisterUseCase,
+                    (application as InstaPaw).loginUserUseCase,
                     savedStateHandle
                 ) as T
             }

@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
         <item name="android:textColor">#212121</item>
         <item name="dividerColor">#BDBDBD</item>
-<!--        <item name="colorSurface">?attr/colorPrimaryVariant</item>-->
+        <!--        <item name="colorSurface">?attr/colorPrimaryVariant</item>-->
         <item name="textInputStyle">@style/textInputStyle</item>
         <item name="bottomNavigationStyle">@style/customBottomNav</item>
         <item name="navigationViewStyle">@style/customNavigationViewStyle</item>
@@ -27,7 +27,7 @@
         <item name="android:background">@color/white</item>
         <item name="itemIconTint">?attr/colorPrimary</item>
         <item name="itemActiveIndicatorStyle">@color/lightPrimaryColor</item>
-<!--        <item name="itemShapeFillColor">@color/lightPrimaryColor</item>-->
+        <!--        <item name="itemShapeFillColor">@color/lightPrimaryColor</item>-->
     </style>
 
 
@@ -36,7 +36,7 @@
     </style>
 
     <style name="textInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-<!--        <item name="android:textColorHint">@color/lightPrimaryColor</item>-->
+        <!--        <item name="android:textColorHint">@color/lightPrimaryColor</item>-->
         <item name="colorAccent">?attr/colorPrimary</item>
         <item name="colorSurface">@color/white</item>
     </style>
