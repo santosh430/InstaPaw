@@ -140,4 +140,20 @@ dependencies {
     kapt ("com.google.dagger:dagger-android-processor:$daggerVersion")
     implementation ("com.google.dagger:dagger-android:$daggerVersion")
 
+    //Room
+    implementation("androidx.room:room-ktx:${LibVersion.roomVersion}")
+    implementation("androidx.room:room-paging:${LibVersion.roomVersion}")
+    kapt("androidx.room:room-compiler:${LibVersion.roomVersion}")
+
+}
+
+object LibVersion {
+    const val composeCompilerVersion = "1.3.2"
+    const val roomVersion = "2.6.1"
+    const val media3Version = "1.0.0-beta03"
+    const val retrofitVersion = "2.9.0"
+    const val moshiVersion = "1.13.0"
+    const val coilVersion = "2.2.2"
+    const val flowerVersion = "3.1.0"
+    const val accompanistVersion = "0.28.0"
 }

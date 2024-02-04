@@ -7,6 +7,6 @@ import javax.inject.Singleton
 
 @Singleton
 @Component (modules = arrayOf(LoginUserModule::class))
-interface LoginUserComponent {
+interface LoginRegisterUserComponent {
     fun injectLoginRegisterActivity(loginRegisterActivity: LoginRegisterActivity)
 }
