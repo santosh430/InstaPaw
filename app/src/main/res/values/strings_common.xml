@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fail_process_fetcing">We are unable to process the request. Please check your internet connectivity or try again later.</string>
+</resources>

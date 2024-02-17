@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Insta Paw</string>
+    <string name="app_database_name">InstaPaw</string>
+    <string name="title_home">होम</string>
+    <string name="title_rescue">रेसकुय</string>
+    <string name="fail_process_fetcing">हम अनुरोध पर कार्रवाई करने में असमर्थ हैं, कृपया अपनी इंटरनेट कनेक्टिविटी जांचें या बाद में पुनः प्रयास करें।</string>
+</resources>
