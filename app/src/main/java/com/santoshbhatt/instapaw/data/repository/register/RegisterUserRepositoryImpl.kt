@@ -10,12 +10,15 @@ import com.santoshbhatt.instapaw.core.util.LogType
 import com.santoshbhatt.instapaw.core.util.Logcat
 import com.santoshbhatt.instapaw.data.local.AppDatabase
 import com.santoshbhatt.instapaw.di.module.AppModule
-import com.santoshbhatt.instapaw.domain.model.RegisterUserDomain
+import com.santoshbhatt.instapaw.domain.model.UserProfile
 import com.santoshbhatt.instapaw.domain.repository.register.RegisterUserRepository
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 const val TAG = "RegisterUserRepositoryImpl"
@@ -24,19 +27,19 @@ class RegisterUserRepositoryImpl @Inject constructor(
     val appDatabase: AppDatabase,
     val appModule: AppModule
 ):RegisterUserRepository {
-    override fun registerUserWithEmail(email: String, password: String) = flow<Resource<RegisterUserDomain>> {
+    override fun registerUserWithEmail(userProfile: UserProfile) = flow<Resource<UserProfile>> {
         try {
             emit(Resource.Loading())
             firebaseAuth.createUserWithEmailAndPassword(
-                email,
-                password
+                userProfile.email,
+                userProfile.password
             ).addOnCompleteListener{ task ->
                     if (task.isSuccessful) {
                         // Sign in success
                         Log.d(TAG, "createUserWithEmail:success")
                         val user = firebaseAuth.currentUser
                         if (user != null){
-                            sendVerificationEmail(user)
+                            sendVerificationEmail(user,userProfile,this)
                         }else{
                             //show error message in UI
                         }
@@ -54,12 +57,16 @@ class RegisterUserRepositoryImpl @Inject constructor(
         emit(Resource.Error(appModule.providesApplicationContext().getString(R.string.fail_process_fetcing)))
     }
 
-    private fun sendVerificationEmail(user: FirebaseUser) {
+    private fun sendVerificationEmail(
+        user: FirebaseUser,
+        userProfile: UserProfile,
+        registerUserWithEmailFlowCollector: FlowCollector<Resource<UserProfile>>
+    ) {
         try {
             user.sendEmailVerification().addOnCompleteListener{
                 if (it.isSuccessful){
                     //email is sent to the user email address, Update UI to notify user to check their inbox.
-                    startTimerToCheckEmailVerification(user)
+                    startTimerToCheckEmailVerification(user,userProfile,registerUserWithEmailFlowCollector)
                 }
             }
         }catch (exception:Exception){
@@ -67,7 +74,11 @@ class RegisterUserRepositoryImpl @Inject constructor(
         }
     }
 
-    private fun startTimerToCheckEmailVerification(user: FirebaseUser) {
+    private fun startTimerToCheckEmailVerification(
+        user: FirebaseUser,
+        userProfile: UserProfile,
+        registerUserWithEmailFlowCollector: FlowCollector<Resource<UserProfile>>
+    ) {
         try {
             val duration:Long = 300000
             object : CountDownTimer(duration,1000){
@@ -75,11 +86,19 @@ class RegisterUserRepositoryImpl @Inject constructor(
                     if (user.isEmailVerified){
                         //Cancel the timer and Onboard User and Navigate to the Home Screen.
                         cancel()
+                        CoroutineScope(Dispatchers.Default).launch {
+                            registerUserWithEmailFlowCollector.emit(Resource.Success(userProfile))
+                            //Store User Register Info in Firebase DataStore.
+
+                        }
                     }
                 }
 
                 override fun onFinish() {
-                    //Navigate to Login Screen
+                    //Navigate back to Login Screen
+                    CoroutineScope(Dispatchers.Default).launch {
+                        registerUserWithEmailFlowCollector.emit(Resource.Error("TimeOut"))
+                    }
                 }
 
             }.start()
